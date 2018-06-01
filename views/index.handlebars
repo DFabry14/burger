@@ -1,0 +1,38 @@
+<div class="container">
+
+    <div class="col-sm-6">
+        <ul>
+            {{#each burger}} {{#unless this.devoured}}
+            <li>{{id}}. {{burger_name}}
+                <button data-id="{{this.id}}" class="btn btn-danger devour">Devour It!</button>
+            </li>
+            {{/unless}} {{/each}}
+        </ul>
+    </div>
+    <div class="col-sm-6">
+        <ul class="list-group">
+            {{#each burgers}} {{#if this.devoured}}
+            <li>{{id}}. {{burger_name}}
+            </li>
+            {{/if}} {{/each}}
+        </ul>
+    </div>
+    <form action="/" method="POST">
+        <textarea type="text" name="burger"></textarea>
+        <button class="submitBtn" type="submit">Submit</button>
+    </form>
+
+</div>
+
+
+<script>
+    $(".devour").on("click", function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url: "/burgers/" + id,
+            method: "PUT"
+        }).then(function (err) {
+            location.reload();
+        })
+    })
+</script>

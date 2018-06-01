@@ -15,6 +15,7 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+require("./controllers/burgers_controller")(app);
 var mysql = require("mysql");
 
 var connection = mysql.createConnection({
@@ -31,4 +32,8 @@ connection.connect(function(err) {
     return;
   }
   console.log("connected as id " + connection.threadId);
+});
+
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
 });
