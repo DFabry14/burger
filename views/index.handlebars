@@ -1,6 +1,7 @@
 <div class="container">
 
     <div class="col-sm-6">
+        <p>Burgers avilable:</p>
         <ul>
             {{#each burger}} {{#unless this.devoured}}
             <li>{{id}}. {{burger_name}}
@@ -10,8 +11,9 @@
         </ul>
     </div>
     <div class="col-sm-6">
+        <p>Burgers eaten:</p>
         <ul class="list-group">
-            {{#each burgers}} {{#if this.devoured}}
+            {{#each burger}} {{#if this.devoured}}
             <li>{{id}}. {{burger_name}}
             </li>
             {{/if}} {{/each}}
